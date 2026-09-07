@@ -1,0 +1,4 @@
+# Per-machine Claude Code settings (plugin installs at --scope local land here).
+# Must stay untracked: git-tracking it flips Claude Code's fromOwnConfig check to false
+# and silently disables the auto-install path it exists to enable.
+.claude/settings.local.json
