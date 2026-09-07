@@ -35,7 +35,7 @@ Claude Code celowo odmawia instalowania czegokolwiek, co jest zadeklarowane
 wyłącznie przez plik śledzony przez gita. Widać to wprost w logu:
 
 ```
-Skipped auto-recording superpowers@superpowers-marketplace
+Skipped auto-recording superpowers@claude-plugins-official
   — enabled only by repo-authored settings
 installPluginsForHeadless: no marketplaces declared
 Found 0 plugins (0 enabled, 0 disabled)
@@ -55,6 +55,25 @@ Rola `.claude/settings.json` jest więc węższa, ale realna: rejestruje
 marketplace'y, deklaruje zamiar i sprawia, że CLI samo podpowiada brakującą
 komendę.
 
+### Skąd pochodzą te pluginy
+
+Dwa marketplace'y, nie trzy:
+
+| Marketplace | Źródło | Rola |
+| --- | --- | --- |
+| `claude-plugins-official` | `anthropics/claude-plugins-official` | 291 pluginów; pokrywa pięć z sześciu |
+| `thedotmack` | `thedotmack/claude-mem` | wyłącznie `claude-mem`, którego w oficjalnym nie ma |
+
+Warto wiedzieć, że Anthropic ma jeszcze mniejszy marketplace w repozytorium
+samego CLI (`anthropics/claude-code`, 13 pluginów). Ten projekt go nie używa:
+oficjalne repozytorium pluginów zawiera wszystko, co stamtąd potrzebne, plus
+280 pluginów więcej i nowszy `security-guidance` (2.0.7 zamiast 2.0.0).
+
+`superpowers` również pochodzi z oficjalnego marketplace'u, mimo że jego autorem
+jest ktoś inny — Anthropic przypina tam konkretny commit repozytorium
+`obra/superpowers`. Sprawdzone: daje tę samą wersję 6.3.0 co marketplace autora,
+ale przypiętą, więc bez osobnego marketplace'u zewnętrznego.
+
 ### Wybór zasięgu
 
 | Zasięg | Gdzie zapisuje | Zakres działania | Uwagi |
@@ -73,12 +92,12 @@ użyty. Liczby pochodzą z `claude plugin details`.
 
 | Plugin | Tokeny/sesję | Hooki | Dysk |
 | --- | ---: | ---: | ---: |
-| `pr-review-toolkit@claude-code-plugins` | ~2 877 | 0 | 88 KB |
+| `pr-review-toolkit@claude-plugins-official` | ~2 877 | 0 | 88 KB |
 | `claude-mem@thedotmack` | ~1 755 | 6 | 474 MB |
-| `superpowers@superpowers-marketplace` | ~688 | 1 | 3,2 MB |
-| `frontend-design@claude-code-plugins` | ~78 | 0 | 44 KB |
-| `code-review@claude-code-plugins` | ~20 | 0 | 40 KB |
-| `security-guidance@claude-code-plugins` | ~0 | 4 | 660 KB |
+| `superpowers@claude-plugins-official` | ~688 | 1 | 3,2 MB |
+| `frontend-design@claude-plugins-official` | ~78 | 0 | 44 KB |
+| `code-review@claude-plugins-official` | ~20 | 0 | 40 KB |
+| `security-guidance@claude-plugins-official` (v2.0.7) | ~0 | 4 | 660 KB |
 | **razem** | **~5 418** | **11** | **~776 MB** |
 
 ### Na co warto zwrócić uwagę
@@ -110,15 +129,14 @@ działają bezpośrednio — kolejność jest istotna, marketplace'y muszą być
 zarejestrowane przed pluginami:
 
 ```powershell
-claude plugin marketplace add anthropics/claude-code
-claude plugin marketplace add obra/superpowers-marketplace
+claude plugin marketplace add anthropics/claude-plugins-official
 claude plugin marketplace add thedotmack/claude-mem
 
-claude plugin install superpowers@superpowers-marketplace
-claude plugin install frontend-design@claude-code-plugins
-claude plugin install code-review@claude-code-plugins
-claude plugin install pr-review-toolkit@claude-code-plugins
-claude plugin install security-guidance@claude-code-plugins
+claude plugin install superpowers@claude-plugins-official
+claude plugin install frontend-design@claude-plugins-official
+claude plugin install code-review@claude-plugins-official
+claude plugin install pr-review-toolkit@claude-plugins-official
+claude plugin install security-guidance@claude-plugins-official
 claude plugin install claude-mem@thedotmack
 ```
 
@@ -130,6 +148,6 @@ w liczbie pojedynczej.
 
 ```sh
 claude plugin list                  # powinno pokazać 6 pozycji "√ enabled"
-claude plugin marketplace list      # powinno pokazać 3 marketplace'y
+claude plugin marketplace list      # powinno pokazać 2 marketplace'y
 claude plugin uninstall <nazwa>     # usunięcie pojedynczego pluginu
 ```

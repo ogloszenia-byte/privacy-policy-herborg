@@ -44,16 +44,18 @@ case "$SCOPE" in
 esac
 
 # Marketplaces must all be registered before any plugin is installed.
-MARKETPLACES='anthropics/claude-code obra/superpowers-marketplace thedotmack/claude-mem'
+# claude-plugins-official carries 291 plugins and covers five of the six below;
+# thedotmack is here only because claude-mem is not in the official marketplace.
+MARKETPLACES='anthropics/claude-plugins-official thedotmack/claude-mem'
 
 # One plugin per `claude plugin install` invocation. Passing several to a
 # single call installs ONLY THE FIRST and still exits 0 - the CLI's usage
 # string is `<plugin>`, singular. Do not collapse these into one command.
-PLUGINS='superpowers@superpowers-marketplace
-        frontend-design@claude-code-plugins
-        code-review@claude-code-plugins
-        pr-review-toolkit@claude-code-plugins
-        security-guidance@claude-code-plugins
+PLUGINS='superpowers@claude-plugins-official
+        frontend-design@claude-plugins-official
+        code-review@claude-plugins-official
+        pr-review-toolkit@claude-plugins-official
+        security-guidance@claude-plugins-official
         claude-mem@thedotmack'
 
 FAILED=0
