@@ -54,7 +54,6 @@ MARKETPLACES='anthropics/claude-plugins-official thedotmack/claude-mem'
 PLUGINS='superpowers@claude-plugins-official
         frontend-design@claude-plugins-official
         code-review@claude-plugins-official
-        pr-review-toolkit@claude-plugins-official
         security-guidance@claude-plugins-official
         claude-mem@thedotmack'
 
