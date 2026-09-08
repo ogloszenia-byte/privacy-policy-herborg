@@ -61,7 +61,7 @@ Dwa marketplace'y, nie trzy:
 
 | Marketplace | Źródło | Rola |
 | --- | --- | --- |
-| `claude-plugins-official` | `anthropics/claude-plugins-official` | 291 pluginów; pokrywa pięć z sześciu |
+| `claude-plugins-official` | `anthropics/claude-plugins-official` | 291 pluginów; pokrywa cztery z pięciu |
 | `thedotmack` | `thedotmack/claude-mem` | wyłącznie `claude-mem`, którego w oficjalnym nie ma |
 
 Warto wiedzieć, że Anthropic ma jeszcze mniejszy marketplace w repozytorium
@@ -92,13 +92,12 @@ użyty. Liczby pochodzą z `claude plugin details`.
 
 | Plugin | Tokeny/sesję | Hooki | Dysk |
 | --- | ---: | ---: | ---: |
-| `pr-review-toolkit@claude-plugins-official` | ~2 877 | 0 | 88 KB |
 | `claude-mem@thedotmack` | ~1 755 | 6 | 474 MB |
 | `superpowers@claude-plugins-official` | ~688 | 1 | 3,2 MB |
 | `frontend-design@claude-plugins-official` | ~78 | 0 | 44 KB |
 | `code-review@claude-plugins-official` | ~20 | 0 | 40 KB |
 | `security-guidance@claude-plugins-official` (v2.0.7) | ~0 | 4 | 660 KB |
-| **razem** | **~5 418** | **11** | **~776 MB** |
+| **razem** | **~2 541** | **11** | **~776 MB** |
 
 ### Na co warto zwrócić uwagę
 
@@ -135,7 +134,6 @@ claude plugin marketplace add thedotmack/claude-mem
 claude plugin install superpowers@claude-plugins-official
 claude plugin install frontend-design@claude-plugins-official
 claude plugin install code-review@claude-plugins-official
-claude plugin install pr-review-toolkit@claude-plugins-official
 claude plugin install security-guidance@claude-plugins-official
 claude plugin install claude-mem@thedotmack
 ```
@@ -147,7 +145,7 @@ w liczbie pojedynczej.
 ### Weryfikacja i usuwanie
 
 ```sh
-claude plugin list                  # powinno pokazać 6 pozycji "√ enabled"
+claude plugin list                  # powinno pokazać 5 pozycji "√ enabled"
 claude plugin marketplace list      # powinno pokazać 2 marketplace'y
 claude plugin uninstall <nazwa>     # usunięcie pojedynczego pluginu
 ```
